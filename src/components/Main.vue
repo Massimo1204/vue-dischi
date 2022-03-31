@@ -1,8 +1,6 @@
 <template>
   <main>
-    <div class="container p-5">
-      <playlistCard :playlists="playlists" />
-    </div>
+    <playlistCard :playlists="playlists" />
   </main>
 </template>
 
