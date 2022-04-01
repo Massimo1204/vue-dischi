@@ -1,7 +1,25 @@
 <template>
-  <header>
+  <header class="d-flex justify-content-between align-items-center">
     <div>
       <img src="../assets/img/logo-small.svg" alt="spotify logo" />
+    </div>
+    <div>
+      <select
+        name="Genres"
+        aria-label="Default select example"
+        class="form-select"
+        v-model="selectedGenre"
+        @change="$emit('selectGenre', selectedGenre)"
+      >
+        <option value="all" selected>All Genres</option>
+        <option
+          v-for="(element, index) in genres"
+          :key="index"
+          :value="element"
+        >
+          {{ element }}
+        </option>
+      </select>
     </div>
   </header>
 </template>
@@ -9,6 +27,12 @@
 <script>
 export default {
   name: "indexHeader",
+  props: ["genres"],
+  data: function () {
+    return {
+      selectedGenre: "all",
+    };
+  },
 };
 </script>
 

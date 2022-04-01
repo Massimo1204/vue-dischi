@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <indexHeader />
-    <indexMain />
+    <indexHeader @selectGenre="sendSelectedGenre" :genres="allGenres" />
+    <indexMain :selectedGenre="selectedGenre" @receiveGenres="copyGenres" />
   </div>
 </template>
 
@@ -14,6 +14,20 @@ export default {
   components: {
     indexHeader,
     indexMain,
+  },
+  data: function () {
+    return {
+      selectedGenre: "all",
+      allGenres: null,
+    };
+  },
+  methods: {
+    sendSelectedGenre(selected) {
+      this.selectedGenre = selected;
+    },
+    copyGenres(genres) {
+      this.allGenres = genres;
+    },
   },
 };
 </script>
