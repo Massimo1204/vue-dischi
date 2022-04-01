@@ -1,7 +1,17 @@
 <template>
   <div id="app">
-    <indexHeader @selectGenre="sendSelectedGenre" :genres="allGenres" />
-    <indexMain :selectedGenre="selectedGenre" @receiveGenres="copyGenres" />
+    <indexHeader
+      @selectGenre="copySelectedGenre"
+      :genres="allGenres"
+      :artists="artists"
+      @selectArtist="copySelectedArtist"
+    />
+    <indexMain
+      :selectedGenre="selectedGenre"
+      @receiveGenres="copyGenres"
+      @receiveArtists="copyArtists"
+      :selectedArtist="selectedArtist"
+    />
   </div>
 </template>
 
@@ -17,16 +27,24 @@ export default {
   },
   data: function () {
     return {
-      selectedGenre: "all",
+      selectedGenre: "",
+      selectedArtist: "",
       allGenres: null,
+      artists: null,
     };
   },
   methods: {
-    sendSelectedGenre(selected) {
+    copySelectedGenre(selected) {
       this.selectedGenre = selected;
+    },
+    copySelectedArtist(artist) {
+      this.selectedArtist = artist;
     },
     copyGenres(genres) {
       this.allGenres = genres;
+    },
+    copyArtists(artists) {
+      this.artists = artists;
     },
   },
 };

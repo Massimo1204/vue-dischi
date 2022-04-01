@@ -3,23 +3,43 @@
     <div>
       <img src="../assets/img/logo-small.svg" alt="spotify logo" />
     </div>
-    <div>
-      <select
-        name="Genres"
-        aria-label="Default select example"
-        class="form-select"
-        v-model="selectedGenre"
-        @change="$emit('selectGenre', selectedGenre)"
-      >
-        <option value="all" selected>All Genres</option>
-        <option
-          v-for="(element, index) in genres"
-          :key="index"
-          :value="element"
+    <div class="selectors-wrapper d-flex">
+      <div>
+        <select
+          name="Genres"
+          aria-label="Default select example"
+          class="form-select"
+          v-model="selectedGenre"
+          @change="$emit('selectGenre', selectedGenre)"
         >
-          {{ element }}
-        </option>
-      </select>
+          <option value="all">All Genres</option>
+          <option
+            v-for="(element, index) in genres"
+            :key="index"
+            :value="element"
+          >
+            {{ element }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <select
+          name="Artists"
+          aria-label="Default select example"
+          class="form-select"
+          v-model="selectedArtist"
+          @change="$emit('selectArtist', selectedArtist)"
+        >
+          <option value="all">All Artists</option>
+          <option
+            v-for="(element, index) in artists"
+            :key="index"
+            :value="element"
+          >
+            {{ element }}
+          </option>
+        </select>
+      </div>
     </div>
   </header>
 </template>
@@ -27,10 +47,11 @@
 <script>
 export default {
   name: "indexHeader",
-  props: ["genres"],
+  props: ["genres", "artists"],
   data: function () {
     return {
       selectedGenre: "all",
+      selectedArtist: "all",
     };
   },
 };
